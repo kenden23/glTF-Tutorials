@@ -93,13 +93,13 @@ The example here consists of a single scene. It refers to the only node in this 
 ```javascript
   "scenes" : [
     {
-      "nodes" : [ 0 ]
+      "nodes" : [ 0 ] // su: These nodes are the root nodes of a scene graph hierachy.
     }
   ],
   
   "nodes" : [
     {
-      "mesh" : 0
+      "mesh" : 0 // su: refers to (point to) the "meshes" object
     }
   ],
 ```
@@ -120,9 +120,9 @@ The actual geometry data of the mesh primitive is given by the `attributes` and 
     {
       "primitives" : [ {
         "attributes" : {
-          "POSITION" : 1
+          "POSITION" : 1 // su: indicate how to render the mesh; depend on the viewer how to use this info to render it
         },
-        "indices" : 0
+        "indices" : 0 // refer to(point to) "accessors" objects indices
       } ]
     }
   ],
@@ -144,7 +144,7 @@ In the example file, the second approach is used: there is a single buffer, cont
 ```javascript
   "buffers" : [
     {
-      "uri" : "data:application/octet-stream;base64,AAABAAIAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAA=",
+      "uri" : "data:application/octet-stream;base64,AAABAAIAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAA=", //hold the real data here
       "byteLength" : 44
     }
   ],
@@ -159,16 +159,16 @@ A [`bufferView`](https://github.com/KhronosGroup/glTF/tree/master/specification/
 ```javascript
   "bufferViews" : [
     {
-      "buffer" : 0,
+      "buffer" : 0, // refer to "buffers" object's index
       "byteOffset" : 0,
       "byteLength" : 6,
-      "target" : 34963
+      "target" : 34963 //equal the GL_ELEMENT_ARRAY_BUFFER value in OpenGL
     },
     {
       "buffer" : 0,
       "byteOffset" : 8,
       "byteLength" : 36,
-      "target" : 34962
+      "target" : 34962 //equal the GL_ARRAY_BUFFER value in OpenGL
     }
   ],
 ```
@@ -188,11 +188,11 @@ The second accessor describes the vertex positions. It contains a reference to t
 ```javascript
   "accessors" : [
     {
-      "bufferView" : 0,
+      "bufferView" : 0, // refer to "bufferViews" object's index
       "byteOffset" : 0,
-      "componentType" : 5123,
-      "count" : 3,
-      "type" : "SCALAR",
+      "componentType" : 5123, // GL_FLOAT, GL_BYTE
+      "count" : 3, // how many elements; "count" * sizeof("componentType") = "byteLength" (of "bufferViews")
+      "type" : "SCALAR", //what type of the data struct is: float, glm::vec2, glm::vec3
       "max" : [ 2 ],
       "min" : [ 0 ]
     },
@@ -217,7 +217,7 @@ As described above, a `mesh.primitive` may now refer to these accessors, using t
         "attributes" : {
           "POSITION" : 1
         },
-        "indices" : 0
+        "indices" : 0 //refer "accessors" ojbect's index
       } ]
     }
   ],
