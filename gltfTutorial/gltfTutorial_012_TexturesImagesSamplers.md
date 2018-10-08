@@ -11,8 +11,8 @@ There are three top-level arrays for the definition of textures in the glTF JSON
 ```javascript
 "textures": {
   {
-    "source": 0,
-    "sampler": 0
+    "source": 0, // refer to "images" 's index
+    "sampler": 0 // refer to "samplers" 's index
   }
 },
 "images": {
