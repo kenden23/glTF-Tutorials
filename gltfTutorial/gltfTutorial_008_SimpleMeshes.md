@@ -30,7 +30,7 @@ The following is a glTF asset that contains a simple mesh with multiple attribut
           "POSITION" : 1,
           "NORMAL" : 2
         },
-        "indices" : 0
+        "indices" : 0 //The index of the accessor that contains the indices.
       } ]
     }
   ],
